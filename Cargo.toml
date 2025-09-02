@@ -1,0 +1,9 @@
+[package]
+name = "bf_search"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5.4", features = ["derive"] }
+im = "15.1.0"
+ordered-float = "4.2.2"
