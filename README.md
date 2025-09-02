@@ -5,7 +5,7 @@ structural sharing of memory and AST. Given a target byte sequence, the
 tool searches for a short, efficient Brainfuck program that produces the
 sequence (and often extrapolates beyond it).
 
-- Input defaults to decimal bytes (e.g., `0 1 2 3`). Hex is optional
+- Input defaults to decimal bytes (e.g., `0 1 2 3 4`). Hex is optional
   via `--hex`.
 - Best-first search using the score:
   score = correct − β · min_len − γ · log2(steps + 1)
@@ -31,7 +31,7 @@ cargo build --release
 - Run in place:
 
 ```bash
-cargo run --release -- 0 1 2 3
+cargo run --release -- 0 1 2 3 4
 ```
 
 - Or install from your fork/clone:
@@ -48,7 +48,7 @@ bf_search [OPTIONS] [BYTE]...
 Positional arguments:
   BYTE...     Target byte sequence in decimal (0..=255).
               Space-separated or comma-delimited.
-              Examples: 0 1 2 3   or   "0,1,2,3"
+              Examples: 0 1 2 3 4 or "0,1,2,3,4"
 
 Options:
   -x, --hex <HEX>        Provide the target as hex (e.g., "00010203" or
@@ -71,17 +71,17 @@ Examples:
 
 ```bash
 # Decimal bytes (default)
-bf_search 0 1 2 3
+bf_search 0 1 2 3 4
 
 # Decimal bytes from a single quoted argument (comma-delimited)
-bf_search "0,1,2,3"
+bf_search "0,1,2,3,4"
 
 # Hex target
-bf_search --hex "00 01 02 03"
-bf_search --hex 00010203
+bf_search --hex "00 01 02 03 04"
+bf_search --hex 0001020304
 
 # Adjust scoring weights and shown extrapolation length
-bf_search -b 1.0 -g 1.0 -e 64 0 1 2 3
+bf_search -b 1.0 -g 1.0 -e 64 0 1 2 3 4
 ```
 
 ## Sample run
